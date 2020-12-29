@@ -26,9 +26,10 @@ const useStyles= makeStyles((theme)=>({
         // minWidth:"10%",
         // maxWidth:'10%',
         width:'10%',
+        height:'100vh',
         backgroundColor:'white',
-        position:'fixed',
-
+        position:'absolute',
+        left:0,
     }
 }))
 
@@ -49,6 +50,11 @@ const useStyles= makeStyles((theme)=>({
 function App(props){
     const classes=useStyles();
     const counter=[1,2,3,4,5,6,7,8];
+    const [name, setName] = React.useState('');
+    const handleChange = (event) => {
+        setName(event.target.value);
+      };
+
     return(
         <React.Fragment>
             <div className={classes.root}>
@@ -65,95 +71,125 @@ function App(props){
                 </Typography>
             </Box> */}
             {/* <Container style={{maxWidth:'min(90%,1280px)'}}> */}
-            <Container maxWidth="lg">
-                <Grid container spacing={2} direction="row" justify="center" alignItems="flex-start">
-                    <Grid item xs={12} md={10}>
-                        <Typography variant="h5" color="primary" style={{letterSpacing:'3px',padding:'10px 0px 30px 0px',fontWeight:'bolder',textTransform:'uppercase'}}>
-                            Search <font color="black">files</font>
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} md={4} style={{position:'relative'}}>
-                        <Card style={{minHeight:'560px',paddingBottom:'50px'}} raised>
-                            <CardContent>
-                                <Typography variant="h6">
-                                    Search
-                                </Typography>
-                                <form>
-                                    <FormGroup row style={{marginTop:'10px'}}>
-                                        <TextField type="search" label="Keyword" variant="outlined" style={{marginRight:'10px'}}/>
-                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Exact Match"/>
-                                    </FormGroup>
-                                    <Typography variant='body1' style={{marginTop:'40px'}}>
-                                        Search In
-                                    </Typography>
-                                    <FormGroup row>
-                                        <FormControlLabel control={<Checkbox name="match_case" />} label="All Formats"/>
-                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Image"/>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Video"/>
-                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Audio"/>
-                                    </FormGroup>
-                                    <hr style={{margin:'40px 0px 0px 0px'}}></hr>
-                                    <Typography variant='body1' style={{marginTop:'10px'}}>
-                                        Additional Features
-                                    </Typography>
-                                    <FormGroup row style={{marginTop:'10px'}}>
-                                        <TextField type="search" label="File Name" variant="outlined" style={{marginRight:'10px'}}/>
-                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Exact Match"/>
-                                    </FormGroup>
-                                    <Typography variant='body1' style={{marginTop:'10px'}}>Created By</Typography>
-                                    <FormGroup row>
-                                        <FormControl className={classes.formControl}>
-                                            <InputLabel id="signature-label">
-                                                Created By
-                                            </InputLabel>
-                                            <Select labelId="signature-label">
-                                                <MenuItem>Garima Goyal</MenuItem>
-                                                <MenuItem>Akash Pandey</MenuItem>
-                                                <MenuItem>Bhoomi Pratap</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </FormGroup>
-                                </form>
-                                <Button variant="contained" color="primary" className={classes.button}>Apply Filters</Button>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-
-                    <Grid item xs={12} md={6} style={{position:'relative'}}>
-                        <Card style={{minHeight:'560px',paddingBottom:'50px'}} raised>
-                            <CardContent>
-                                <Typography variant="h6">
-                                    Search Results
-                                </Typography>
-                                <Table padding='checkbox' style={{marginTop:'10px'}}>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>&nbsp;</TableCell>
-                                            <TableCell>File Name</TableCell>
-                                            <TableCell>File Type</TableCell>
-                                            <TableCell>Action</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {counter.map(()=>{
-                                            return(         <TableRow>
-                                                <TableCell><FormControlLabel control={<Checkbox name="check"/>}/></TableCell>
-                                                <TableCell>Post Course.pptx</TableCell>
-                                                <TableCell>PPT</TableCell>
-                                                <TableCell>👁</TableCell>
-                                                </TableRow>)
-                                            })}
-                                    </TableBody>
-                                </Table>
-                                <Button variant="contained" color="primary" className={classes.button}>Continue</Button>
-                            </CardContent>
-                        </Card>
-                    </Grid>
+            <Grid container spacing={0} direction="row" style={{position:'relative'}}>
+                <Grid item xs={12} md={2} style={{position:'relative',left:'0px'}}>
+                    <Box style={{backgroundColor:'white',height:"100%"}}>
+                            hi
+                        </Box>
                 </Grid>
-            </Container>
+                <Grid item md={10}>
+                <Container maxWidth='lg'>
+                    <Grid container spacing={2} direction="row" justify="center" alignItems="flex-start">
+                        {/* <Grid item md md={2}>
+                            <Box position="fixed" width="200px" left={0} style={{backgroundColor:'white'}}>
+                                <Typography variant='h1' color="primary">HI</Typography>
+                            </Box>
+                        </Grid> */}
+
+                        <Grid item xs={12}>
+                            <Typography variant="h5" color="primary" style={{letterSpacing:'3px',padding:'10px 0px 30px 0px',fontWeight:'bolder',textTransform:'uppercase'}}>
+                                Search <font color="black">files</font>
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={12} md={5} style={{position:'relative'}}>
+                            <Card style={{minHeight:'560px', paddingBottom:'50px'}} raised>
+                                <CardContent>
+                                    <Typography variant="h6">
+                                        Search
+                                    </Typography>
+                                    <form>
+                                        <FormGroup row style={{marginTop:'10px'}}>
+                                            <TextField type="search" label="Keyword" variant="outlined" style={{marginRight:'10px'}}/>
+                                            <FormControlLabel control={<Checkbox name="match_case" />} label="Exact Match"/>
+                                        </FormGroup>
+                                        <Typography variant='body1' style={{marginTop:'40px'}}>
+                                            Search In
+                                        </Typography>
+                                        <Table padding="checkbox" style={{width:'300px'}}>
+                                            <TableBody>
+                                                <TableRow>
+                                                    <TableCell>
+                                                        <FormControlLabel control={<Checkbox name="match_case" />} label="All Formats"/>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Image"/>
+                                                    </TableCell>
+                                                </TableRow>
+                                                <TableRow>
+                                                    <TableCell>
+                                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Video"/>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <FormControlLabel control={<Checkbox name="match_case" />} label="Audio"/>
+                                                    </TableCell>
+                                                </TableRow>
+                                            </TableBody>
+                                        </Table>
+                                        <hr style={{margin:'40px 0px 0px 0px'}}></hr>
+                                        <Typography variant='body1' style={{marginTop:'10px'}}>
+                                            Additional Features
+                                        </Typography>
+                                        <FormGroup row style={{marginTop:'10px'}}>
+                                            <TextField type="search" label="File Name" variant="outlined" style={{marginRight:'10px'}}/>
+                                            <FormControlLabel control={<Checkbox name="match_case" />} label="Exact Match"/>
+                                        </FormGroup>
+                                        <Typography variant='body1' style={{marginTop:'10px'}}>Created By</Typography>
+                                        <FormGroup row>
+                                            <FormControl className={classes.formControl}>
+                                                <InputLabel id="signature-label">
+                                                    Created By
+                                                </InputLabel>
+                                                <Select labelId="signature-label" value={name} onChange={handleChange}>
+                                                    <MenuItem value={1}>Garima Goyal</MenuItem>
+                                                    <MenuItem value={2}>Akash Pandey</MenuItem>
+                                                    <MenuItem value={3}>Bhoomi Pratap</MenuItem>
+                                                </Select>
+                                            </FormControl>
+                                        </FormGroup>
+                                    </form>
+                                    <Button variant="contained" color="primary" className={classes.button}>Apply Filters</Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+                        <Grid item xs={12} md={7} style={{position:'relative'}}>
+                            <Card style={{minHeight:'560px',padding:'0px 50px 50px 50px'}} raised>
+                                <CardContent>
+                                    <Typography variant="h6">
+                                        Search Results
+                                    </Typography>
+                                    <Table padding='checkbox' style={{width:'400px',margin:'auto',marginTop:'10px'}}>
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>&nbsp;</TableCell>
+                                                <TableCell>File Name</TableCell>
+                                                <TableCell>File Type</TableCell>
+                                                <TableCell>Action</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {counter.map(()=>{
+                                                return(
+                                                    <TableRow>
+                                                        <TableCell><FormControlLabel control={<Checkbox name="check"/>}/></TableCell>
+                                                        <TableCell>Post Course.pptx</TableCell>
+                                                        <TableCell>PPT</TableCell>
+                                                        <TableCell>👁</TableCell>
+                                                    </TableRow>)
+                                                })}
+                                        </TableBody>
+                                    </Table>
+                                    <Button variant="contained" color="primary" className={classes.button}>Continue</Button>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Grid>
+            </Grid>
             </div>
+
         </React.Fragment>
     )
 }
